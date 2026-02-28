@@ -87,11 +87,33 @@
   /* Hero */
   #hero {
     min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 8rem 4rem 5rem;
+    display: flex; flex-direction: column; justify-content: flex-start;
+    padding: 7rem 4rem 5rem;
     position: relative;
     overflow: hidden;
+    background: #0d0d0d;
   }
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.6;
+  }
+  #hero > *:not(#hero-canvas) {
+    position: relative;
+    z-index: 1;
+  }
+  #hero .hero-name { color: #f7f5f0; }
+  #hero .hero-name em { color: rgba(247,245,240,0.45); }
+  #hero .hero-label { color: rgba(247,245,240,0.5); }
+  #hero .hero-bottom {
+    border-top-color: rgba(247,245,240,0.12);
+  }
+  #hero .hero-desc { color: rgba(247,245,240,0.5); }
+  #hero .hero-meta p { color: rgba(247,245,240,0.45); }
+  #hero .hero-meta strong { color: #f7f5f0; }
+  #hero .scroll-hint { color: rgba(247,245,240,0.35); }
+  #hero .scroll-line { background: rgba(247,245,240,0.35); }
   .hero-bg-text {
     position: absolute;
     top: 50%; left: -2rem;
@@ -110,9 +132,10 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--gray);
+    margin-top: 1rem;
     margin-bottom: 1.5rem;
     opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
+    animation: fadeUp 0.8s 0.5s forwards;
   }
   .hero-name {
     font-family: 'DM Serif Display', serif;
@@ -120,7 +143,7 @@
     line-height: 1.0;
     letter-spacing: -0.02em;
     opacity: 0;
-    animation: fadeUp 0.9s 0.4s forwards;
+    animation: fadeUp 0.9s 0.2s forwards;
   }
   .hero-name em {
     font-style: italic;
@@ -143,16 +166,7 @@
   .hero-meta { text-align: right; }
   .hero-meta p { font-size: 0.85rem; color: var(--gray); }
   .hero-meta strong { color: var(--black); font-weight: 600; }
-  .scroll-hint {
-    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray);
-    opacity: 0; animation: fadeUp 0.8s 1.2s forwards;
-  }
-  .scroll-line {
-    width: 1px; height: 40px; background: var(--gray);
-    animation: scrollPulse 2s infinite;
-  }
+
 
   /* Sections */
   section { padding: 6rem 4rem; }
@@ -259,11 +273,10 @@
     padding-left: 3rem;
     padding-bottom: 4rem;
     position: relative;
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.6s, transform 0.6s;
   }
-  .timeline-item.visible { opacity: 1; transform: translateY(0); }
   .timeline-dot {
     position: absolute; left: -5px; top: 6px;
     width: 10px; height: 10px;
@@ -472,7 +485,8 @@
   @media (max-width: 768px) {
     nav { padding: 1.2rem 1.5rem; }
     .nav-links { display: none; }
-    #hero, section { padding: 5rem 1.5rem 3rem; }
+    #hero { padding: 6rem 1.5rem 3rem; }
+    section { padding: 4rem 1.5rem 3rem; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .about-stats { grid-template-columns: 1fr 1fr; }
     body { cursor: auto; }
@@ -487,7 +501,6 @@
 
 <!-- Nav -->
 <nav>
-  <a href="#hero" class="nav-logo">KA.</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -499,11 +512,12 @@
 
 <!-- Hero -->
 <section id="hero">
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-bg-text">KA</div>
-  <p class="hero-label">Senior Software Engineer · Bangalore, India</p>
   <h1 class="hero-name">
     Kalaiselvi<br><em>Anandhan</em>
   </h1>
+  <p class="hero-label">Senior Software Engineer · Bangalore, India</p>
   <div class="hero-bottom">
     <p class="hero-desc">
       Building scalable fintech, luxury retail &amp; enterprise platforms. 
@@ -515,10 +529,7 @@
       <p>Richemont · Cartier</p>
     </div>
   </div>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    Scroll
-  </div>
+
 </section>
 
 <!-- About -->
@@ -732,21 +743,21 @@
     <div>
       <p class="contact-text">Open to senior engineering roles in product companies, platform teams, or anywhere I can work on meaningful technical challenges. Feel free to reach out.</p>
       <div class="contact-links">
-        <a href="mailto:your.email@gmail.com" class="contact-link">
-          kalaialiaspavi@gmail.com <span>Email</span>
+        <a href="/cdn-cgi/l/email-protection#9be2f4eee9b5fef6faf2f7dbfcf6faf2f7b5f8f4f6" class="contact-link">
+          <span class="__cf_email__" data-cfemail="95ecfae0e7bbf0f8f4fcf9d5f2f8f4fcf9bbf6faf8">kalaialiaspavi@gmail.com</span> <span>Email</span>
         </a>
         <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
-          in.linkedin.com/in/kalaiselvi-anandhan <span>LinkedIn</span>
+          linkedin.com/in/kalaiselvi-anandhan <span>LinkedIn</span>
         </a>
         <a href="https://github.com/yourgithub" target="_blank" class="contact-link">
-          https://kalaiselvi-anandhan.github.io <span>Portfolio</span>
+          github.com/kalaiselvi-anandhan <span>GitHub</span>
         </a>
       </div>
     </div>
     <form class="contact-form" onsubmit="handleSubmit(event)">
       <div class="form-field">
         <label>Your Name</label>
-        <input type="text" placeholder="Jane Smith" required>
+        <input type="text" placeholder="Smith" required>
       </div>
       <div class="form-field">
         <label>Email</label>
@@ -769,7 +780,68 @@
   <span>Built with HTML · Hosted on GitHub Pages</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Hero canvas — floating particles + connecting lines
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); });
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
+      this.r  = Math.random() * 1.5 + 0.5;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > W) this.vx *= -1;
+      if (this.y < 0 || this.y > H) this.vy *= -1;
+    }
+  }
+
+  particles = Array.from({ length: 90 }, () => new Particle());
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // Draw connecting lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(247,245,240,${0.12 * (1 - dist/120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    // Draw dots
+    particles.forEach(p => {
+      p.update();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(247,245,240,0.5)';
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -802,13 +874,3 @@
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? '#0d0d0d' : '';
-    });
-  });
-</script>
-</body>
-</html>
